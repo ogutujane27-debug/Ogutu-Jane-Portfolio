@@ -1,0 +1,6 @@
+# Ignore audit reports, logs, and temporary data files
+*.csv
+*.txt
+*.xlsx
+__pycache__/
+.vscode/
