@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 def run_offline_reconciliation():
-    delivery_folder = r"C:\Kubo\delivery"
+    delivery_folder = r"C:\Kubo\Deliveries\August"
     excel_path = "New SAP Combine (HANA).xlsx"
     report_path = "reconciliation_audit_report.csv"
     
@@ -22,8 +22,8 @@ def run_offline_reconciliation():
         return
     
     # Standard column name checks (adjust if your headers differ)
-    date_column = "Date"
-    doc_id_column = "DOCUMENT_ID"
+    date_column = "DocDate"
+    doc_id_column = "DocNum"
     
     if date_column not in df.columns or doc_id_column not in df.columns:
         print(f"[Error] Expected columns '{date_column}' or '{doc_id_column}' not found.")
@@ -31,7 +31,7 @@ def run_offline_reconciliation():
         return
 
     # Filter for August 24, 2026
-    target_date = "2026-08-24"
+    target_date = "2026-08-27"
     filtered_df = df[df[date_column].astype(str).str.contains(target_date)]
     valid_doc_numbers = set(filtered_df[doc_id_column].astype(str).str.strip())
     
